@@ -11218,6 +11218,9 @@ body {
   height:15em;
   width: auto;
  }
+ .modal h5{
+  font-weight: 600;
+ }
 /* Carousel---------------------------*/
  #brochure .carousel-fade .carousel-inner .carousel-item {
   opacity: 0;
