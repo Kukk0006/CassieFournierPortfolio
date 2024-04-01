@@ -41,7 +41,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#video-projects">Video</a></li>
                             <li><a class="dropdown-item" href="#illustration-projects">Illustration</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <li><a class="dropdown-item" href="#hobbies">Hobbies</a></li>
                         </ul>
                     </li>
                     <li class="nav-item"><a class="nav-link" href="#signup">Contact</a></li>
@@ -57,7 +57,7 @@
                     <h1 class="mx-auto my-0 text-uppercase pb-3 pe-3">Cassie Fournier</h1>
                     <h2 class="text-white-50 mx-auto mt-2 mb-5">Interactive Media Designer with a passion for learning!
                     </h2>
-                    <a class="btn btn-primary" href="#about">About Me</a>
+                    <button class="btn btn-primary" href="#about">About Me</button>
                 </div>
             </div>
         </div>
@@ -67,7 +67,7 @@
         <div class="container px-4 px-lg-5">
             <div class="row gx-4 gx-lg-5 justify-content-center about-me-content">
                 <div class="col-lg-4 mb-4 about-me-picture">
-                    <img src="./assets/images/photos/profile-355x376.jpg" class="rounded-5">
+                    <img src="./assets/images/photos/profile-355x376.jpg" class="rounded-5" alt="Profile Picture">
                 </div>
                 <div class="col-lg-8">
                     <h2 class="text-white mb-4">About Me</h2>
@@ -225,10 +225,10 @@
                 </div>
             </div><!--Skills-->
             <div>
-                <h5>Download resume
-                    <a href="documents/KukkonenE04.pdf" download="CassieFournierResume" role="button"
-                        class="text-center col-4 rounded-5">HERE</a>
-                </h5>
+                <h4><a href="documents/KukkonenE04.pdf" download="CassieFournierResume" role="button"
+                        class="text-center col-4 rounded-5">Download resume
+                        here</a>
+                </h4>
             </div>
         </div>
     </section>
@@ -867,7 +867,7 @@
         </div> <!--end modal-dialog-->
     </div><!--end modal-label-->
     <!--Hobbies-->
-    <div class="mb-5">
+    <div class="mb-5" id="hobbies">
         <div class="container px-4 px-lg-5">
             <h2>Hobbies</h2>
         </div>
@@ -924,8 +924,9 @@
                     <form id="fs-frm" name="simple-contact-form" accept-charset="utf-8"
                         action="https://formspree.io/f/myyrnbvj" method="post" target="_blank">
                         <fieldset id="fs-frm-inputs">
-                            <label for="Name" class="text-light m-1 ">Name</label>
-                            <input type="text" name="name" id="-name" placeholder="Your Name" required="">
+                            <legend class="text-light m-1">Contact Me</legend>
+                            <label for="name" class="text-light m-1 ">Name</label>
+                            <input type="text" name="name" id="name" placeholder="Your Name" required="">
                             <label for="email-address" class="text-light m-1">Email Address</label>
                             <input type="email" name="_replyto" id="email-address" placeholder="Your Email" required="">
                             <label for="message" class="text-light m-1">Message</label>
@@ -980,10 +981,16 @@
             </div>
             <div class="social d-flex justify-content-center">
                 <a class="mx-2" href="https://kukk0006.myportfolio.com/" target="_blank"><i
-                        class="fa-solid fa-camera"></i></a>
+                        class="fa-solid fa-camera"></i>
+                    <p class="invisible">Adobe Photo Gallery</p>
+                </a>
                 <a class="mx-2" href="https://www.linkedin.com/in/cassandra-fournier/" target="_blank"><i
-                        class="fab fa-linkedin-in"></i></a>
-                <a class="mx-2" href="https://github.com/Kukk0006" target="_blank"><i class="fab fa-github"></i></a>
+                        class="fab fa-linkedin-in"></i>
+                    <p class="invisible">LinkedIn Profile</p>
+                </a>
+                <a class="mx-2" href="https://github.com/Kukk0006" target="_blank"><i class="fab fa-github"></i>
+                    <p class="invisible">GitHub Acount</p>
+                </a>
             </div>
         </div>
     </section>
