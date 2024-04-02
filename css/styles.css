@@ -4460,7 +4460,7 @@ textarea.form-control-lg {
   align-items: center;
   width: 100%;
   padding: var(--bs-accordion-btn-padding-y) var(--bs-accordion-btn-padding-x);
-  font-size: 1rem;
+  font-size: 1.25rem;
   color: var(--bs-accordion-btn-color);
   text-align: left;
   background-color: var(--bs-accordion-btn-bg);
@@ -11184,25 +11184,38 @@ body {
   font-size: large;
   font-weight: 550;
 }
+#resume h4{
+  font-size: 18px;
+  font-weight: 600;
+}
 .hr-line{
   display: block;
-  margin: 0 auto;
+  margin: 2rem 0;
+  min-width: 100vw;
+  opacity: 25%;
 }
 .projects-section {
-  padding: 5rem 0;
+  padding: 3rem 0;
 }
 .projects-section .featured-text {
-  padding: 2rem;
+  background-color: #FCF5E6;
+}
+.featured-project{
+  background-color: #FCF5E6;
 }
 @media (min-width: 992px) {
   .projects-section .featured-text {
-    padding: 0 0 0 2rem;
+    padding:1rem;
     border-left: 0.5rem solid var(--accent-brand);
   }
 }
 .projects-section .project-text {
   padding: 3rem;
   font-size: 90%;
+}
+#video-projects{
+  background-color: rgba(19, 98, 60, 0.25)
+  ; 
 }
 .featured-project{
   height:460px;
@@ -11216,10 +11229,13 @@ body {
 }
 .motionGraphics{
   height:15em;
-  width: auto;
+  width: 100%;
  }
  .modal h5{
   font-weight: 600;
+ }
+ .details, .summary{
+  padding: 0px 16px;
  }
 /* Carousel---------------------------*/
  #brochure .carousel-fade .carousel-inner .carousel-item {
@@ -11389,6 +11405,7 @@ border-radius: 1rem;
 .contact-section .card {
   border: 0;
   border-bottom: 0.25rem solid #4C1752;
+  background-color: #ede8ee;
 }
 .contact-section .card h4, .contact-section .card .h4 {
   font-size: 0.8rem;
@@ -11423,4 +11440,12 @@ border-radius: 1rem;
 
 .footer {
   padding: 5rem 0;
+}
+#preloader{
+  background: #000 url("../assets/images/videos/logo-green-split.gif") no-repeat center center;
+  background-size: 15%;
+  height: 100vh;
+  width:100%;
+position: fixed;
+z-index: 2000;
 }
