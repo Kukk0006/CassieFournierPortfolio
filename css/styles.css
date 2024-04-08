@@ -11191,8 +11191,9 @@ body {
 .hr-line{
   display: block;
   margin: 2rem 0;
-  min-width: 100vw;
+  max-width: 100vw;
   opacity: 25%; 
+  overflow: hidden;
 }
 .projects-section {
   padding: 3rem 0;
