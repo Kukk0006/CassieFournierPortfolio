@@ -20,7 +20,7 @@
     <link href="css/styles.css" rel="stylesheet" />
 </head>
 
-<body id="page-top">
+<body id="page-top" class="custom-scroll-animation">
     <div id="preloader"></div>
     <!-- Navigation-->
 
@@ -37,9 +37,10 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
                     <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
-                    <li><a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    <li class="nav-item dropdown" data-bs-auto-close="inside">
+                        <a class="nav-link dropdown-toggle " href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">Projects</a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu " data-bs-auto-close="inside">
                             <li><a class="dropdown-item" href="#video-projects">Video</a></li>
                             <li><a class="dropdown-item" href="#illustration-projects">Illustration</a></li>
                             <li><a class="dropdown-item" href="#hobbies">Hobbies</a></li>

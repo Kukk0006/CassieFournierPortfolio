@@ -102,7 +102,9 @@
     scroll-behavior: smooth;
   }
 }
-
+.custom-scroll-animation {
+  transition-timing-function: ease-in-out;
+}
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
@@ -11442,11 +11444,17 @@ border-radius: 1rem;
 .footer {
   padding: 5rem 0;
 }
-#preloader{
+
+  #preloader{
   background: #000 url("../assets/images/videos/logo-green-split.gif") no-repeat center center;
-  background-size: 15%;
-  height: 100vh;
-  width:100%;
-position: fixed;
-z-index: 2000;
+  background-size:50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* CSS transition for opacity */
+  transition: opacity 0.5s ease; /* Adjust duration and easing function as needed */
+  z-index: 9000;
+
 }

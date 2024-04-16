@@ -41,15 +41,20 @@ window.addEventListener('DOMContentLoaded', event => {
     // Collapse responsive navbar when toggler is visible
     const navbarToggler = document.body.querySelector('.navbar-toggler');
     const responsiveNavItems = [].slice.call(
-        document.querySelectorAll('#navbarResponsive .nav-link')
+        document.querySelectorAll('#navbarResponsive .nav-link, #navbarResponsive .dropdown-item')
     );
     responsiveNavItems.map(function (responsiveNavItem) {
         responsiveNavItem.addEventListener('click', () => {
-            if (window.getComputedStyle(navbarToggler).display !== 'none') {
+            // Check if the clicked item is a dropdown menu item
+            const isDropdown = responsiveNavItem.parentNode.classList.contains('dropdown');
+
+            // If it's not a dropdown menu item, and the navbar toggler is visible, close the navbar
+            if (!isDropdown && window.getComputedStyle(navbarToggler).display !== 'none') {
                 navbarToggler.click();
             }
         });
     });
+
 
 });
 
@@ -87,5 +92,13 @@ var swiper = new Swiper(".mySwiper", {
 });
 let loader = document.getElementById("preloader");
 window.addEventListener('load', function () {
-    loader.style.display = "none"
-})
+    // Set a minimum delay of 2000 milliseconds (2 seconds) before hiding the preloader
+    setTimeout(function () {
+        // Set opacity to 0 to start the transition
+        loader.style.opacity = "0";
+        // After the transition completes, set display to none to hide the preloader completely
+        loader.addEventListener('transitionend', function () {
+            loader.style.display = "none";
+        });
+    }, 2500);
+});
