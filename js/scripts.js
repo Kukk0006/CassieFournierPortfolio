@@ -90,15 +90,15 @@ var swiper = new Swiper(".mySwiper", {
         },
     },
 });
-let loader = document.getElementById("preloader");
-window.addEventListener('load', function () {
-    // Set a minimum delay of 2000 milliseconds (2 seconds) before hiding the preloader
-    setTimeout(function () {
-        // Set opacity to 0 to start the transition
-        loader.style.opacity = "0";
-        // After the transition completes, set display to none to hide the preloader completely
-        loader.addEventListener('transitionend', function () {
-            loader.style.display = "none";
-        });
-    }, 2500);
-});
+// let loader = document.getElementById("preloader");
+// window.addEventListener('load', function () {
+//     // Set a minimum delay of 2000 milliseconds (2 seconds) before hiding the preloader
+//     setTimeout(function () {
+//         // Set opacity to 0 to start the transition
+//         loader.style.opacity = "0";
+//         // After the transition completes, set display to none to hide the preloader completely
+//         loader.addEventListener('transitionend', function () {
+//             loader.style.display = "none";
+//         });
+//     }, 2500);
+// });

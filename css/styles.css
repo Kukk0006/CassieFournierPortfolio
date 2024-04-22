@@ -11240,6 +11240,10 @@ body {
  .details, .summary{
   padding: 0px 16px;
  }
+ .trackingsvg{
+  max-height: 15rem;
+  margin: 0 auto;
+ }
 /* Carousel---------------------------*/
  #brochure .carousel-fade .carousel-inner .carousel-item {
   opacity: 0;
@@ -11381,12 +11385,12 @@ border-radius: 1rem;
   background-attachment: scroll;
   background-size: cover;
 }
-.form-email fieldset {
+/* .form-email fieldset {
   display: flex;
   flex-direction: column;
-}
+} */
 .form-email label{
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 .email-submit{
   margin:1rem;
