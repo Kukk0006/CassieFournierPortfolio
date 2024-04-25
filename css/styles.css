@@ -11368,7 +11368,7 @@ body {
   height: 100%;
   object-fit: cover;
 }
-.swiper h3{
+.swiper p{
 position: absolute;
 z-index: 1;
 bottom: 0;
@@ -11376,7 +11376,6 @@ font-weight: 900;
 padding:0.5rem;
 background-color: rgba(255, 255, 255, 0.4);
 border-radius: 1rem;
-opacity: 0.8;
 font-size: 1.2em;
 }
 
