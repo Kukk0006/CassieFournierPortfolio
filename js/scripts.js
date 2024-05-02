@@ -57,7 +57,28 @@ window.addEventListener('DOMContentLoaded', event => {
 
 
 });
+function scrollToSection () {
+    window.addEventListener('DOMContentLoaded', () => {
+        // Select the whole HTML & disable smooth-scroll behavior in CSS
+        let htmlElement = document.querySelector('html');
+        htmlElement.style.scrollBehavior = 'auto';
 
+        // Go to the anchor point
+        let hash = window.location.hash;
+        if (hash) {
+            let targetSection = document.querySelector(hash);
+            if (targetSection) {
+                targetSection.scrollIntoView(true);
+            }
+        }
+
+        // Enable smooth-scroll behavior again
+        htmlElement.style.scrollBehavior = 'smooth';
+    });
+}
+
+// Call the function to scroll to the section on page load
+scrollToSection();
 var swiper = new Swiper(".mySwiper", {
 
     slidesPerView: 1,
@@ -90,6 +111,7 @@ var swiper = new Swiper(".mySwiper", {
         },
     },
 });
+baguetteBox.run('.gallery');
 // let loader = document.getElementById("preloader");
 // window.addEventListener('load', function () {
 //     // Set a minimum delay of 2000 milliseconds (2 seconds) before hiding the preloader
