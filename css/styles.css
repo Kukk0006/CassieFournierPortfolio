@@ -11309,7 +11309,7 @@ html {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 25%, #000 100%), url("../assets/images/photos/mywork/sassycat-banner.jpg");
 }
 .hero-Rocky{
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 25%, #000 100%), url("../assets/images/photos/mywork/rocky-hero.png");
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.2) 75%, #000 100%), url("../assets/images/photos/mywork/rocky-hero.png");
 }
 
 /* Carousel---------------------------*/

@@ -111,7 +111,11 @@ var swiper = new Swiper(".mySwiper", {
         },
     },
 });
-baguetteBox.run('.gallery');
+baguetteBox.run('.gallery', {
+    noScrollbars: true,
+    zoom: true,
+    fullscreen: true,
+});
 // let loader = document.getElementById("preloader");
 // window.addEventListener('load', function () {
 //     // Set a minimum delay of 2000 milliseconds (2 seconds) before hiding the preloader
