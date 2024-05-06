@@ -11298,9 +11298,20 @@ html {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 25%, #000 100%), url("../assets/images/photos/mywork/Screenshot\ 2024-04-30\ 175256.png");
 }
 
+.hero-TD{
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.25) 50%, #000 100%), url("../assets/images/photos/mywork/timelessdrift-hero.png");
+}
+
 .hero-HBC {
   background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 25%, #000 100%), url("../assets/images/photos/mywork/batpattern.png");
 }
+.hero-SC{
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 25%, #000 100%), url("../assets/images/photos/mywork/sassycat-banner.jpg");
+}
+.hero-Rocky{
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.5) 25%, #000 100%), url("../assets/images/photos/mywork/rocky-hero.png");
+}
+
 /* Carousel---------------------------*/
  #brochure .carousel-fade .carousel-inner .carousel-item {
   opacity: 0;
