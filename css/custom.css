@@ -1,0 +1,39 @@
+/* ----------------------------------------------------------------
+	Custom CSS
+
+	Add all your Custom Styled CSS here for New Styles or
+	Overwriting Default Theme Styles for Better Hanlding Updates
+-----------------------------------------------------------------*/
+.sb-bg{
+	background-color: #FCF5E6;
+	opacity: 100%;
+	border: .5em solid #13623C;
+}
+.sb-bg img{
+	box-shadow: 3px 5px lightgrey;
+}
+
+#services ul li{
+list-style: none;
+}
+
+.featured-border{
+	box-shadow: 0px 0px 20px #1da362b4;
+
+}
+.video-wrapper {
+	position: relative;
+	width: 100%;
+	padding-bottom: 56.25%; /* 16:9 aspect ratio */
+	height: 0;
+	overflow: hidden;
+}
+
+.video-iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	border: 0;
+}
