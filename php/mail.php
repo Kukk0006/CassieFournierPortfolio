@@ -20,15 +20,15 @@ require './phpmailer/src/SMTP.php';
   // Receiver's Email
 --------------------------------------------- */
 
-$toEmail = "your-email@website.com"; // Replace Your Email Address
+$toEmail = "cassie.fournier@outlook.com"; // Replace Your Email Address
 
 
 /* --------------------------------------------
   // Sender's Email
 --------------------------------------------- */
 
-$fromEmail = "no-reply@website.com";  // Replace Company's Email Address (preferably currently used Domain Name)
-$fromName = "Company Name"; // Replace Company Name
+$fromEmail = "cassie.fournier@outlook.com";  // Replace Company's Email Address (preferably currently used Domain Name)
+$fromName = "Cassie Fournier"; // Replace Company Name
 
 
 /* --------------------------------------------
@@ -47,29 +47,35 @@ $subject = "Form Response from Your Website"; // Your Subject
 
 if (isset($_POST['name'])) {
 
-/*-------------------------------------------------
+	/*-------------------------------------------------
 	PHPMailer Initialization
 ---------------------------------------------------*/
 
-$mail = new PHPMailer(true);
+	$mail = new PHPMailer(true);
 
-/* Add your SMTP Codes after this Line */
+	/* Add your SMTP Codes after this Line */
+	$mail->isSMTP();
+	$mail->Host = 'smtp.office365.com'; // Replace with your SMTP server
+	$mail->SMTPAuth = true;
+	$mail->Username = 'cassie.fourniner@outlook.com'; // Replace with SMTP username
+	$mail->Password = 'C@$$1eku1988'; // Replace with SMTP password
+	$mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS; // Or ENCRYPTION_SMTPS
+	$mail->Port = 587; // Or 465 for SMTPS
 
+	// End of SMTP
 
-// End of SMTP
+	if (filter_var($toEmail, FILTER_VALIDATE_EMAIL)) {
 
-if (filter_var($toEmail, FILTER_VALIDATE_EMAIL)) {
+		$mail->AddAddress($toEmail);
+		$mail->setFrom($fromEmail, $fromName);
+		$mail->addReplyTo($_POST['email'], $_POST['name']);
 
-	$mail->AddAddress($toEmail);
-	$mail->setFrom($fromEmail, $fromName);
-	$mail->addReplyTo($_POST['email'], $_POST['name']);
+		$mail->isHTML(true);
+		$mail->CharSet = 'UTF-8';
 
-	$mail->isHTML(true);
-	$mail->CharSet = 'UTF-8';
-	
-	$mail->Subject = $subject . ' [' . $_POST['name'] . ']';
+		$mail->Subject = $subject . ' [' . $_POST['name'] . ']';
 
-	$mail->Body = '<table align="center" border="0" cellpadding="0" cellspacing="20" height="100%" width="100%">
+		$mail->Body = '<table align="center" border="0" cellpadding="0" cellspacing="20" height="100%" width="100%">
 						<tr>
 							<td align="center" valign="top">
 								<table width="600" bgcolor="#f8f6fe" cellpadding="7" style="font-size:16px; padding:30px; line-height: 28px;">
@@ -89,78 +95,76 @@ if (filter_var($toEmail, FILTER_VALIDATE_EMAIL)) {
 							</td>
 						</tr>
 					</table>';
-	
-	/*-------------------------------------------------
+
+		/*-------------------------------------------------
 		reCaptcha
 	---------------------------------------------------*/
-	$message = array(
-		'recaptcha_invalid' => 'Captcha not Validated! Please Try Again!',
-		'recaptcha_error' => 'Captcha not Submitted! Please Try Again.'
-	);
-	$message_form = !empty($_POST['message']) ? $_POST['message'] : array();
-	$message['recaptcha_invalid'] = !empty($message_form['recaptcha_invalid']) ? $message_form['recaptcha_invalid'] : $message['recaptcha_invalid'];
-	$message['recaptcha_error'] = !empty($message_form['recaptcha_error']) ? $message_form['recaptcha_error'] : $message['recaptcha_error'];
-
-	if (isset($_POST['g-recaptcha-response'])) {
-		$recaptcha_data = array(
-			'secret' => $recaptcha_secret,
-			'response' => $_POST['g-recaptcha-response']
+		$message = array(
+			'recaptcha_invalid' => 'Captcha not Validated! Please Try Again!',
+			'recaptcha_error' => 'Captcha not Submitted! Please Try Again.'
 		);
+		$message_form = !empty($_POST['message']) ? $_POST['message'] : array();
+		$message['recaptcha_invalid'] = !empty($message_form['recaptcha_invalid']) ? $message_form['recaptcha_invalid'] : $message['recaptcha_invalid'];
+		$message['recaptcha_error'] = !empty($message_form['recaptcha_error']) ? $message_form['recaptcha_error'] : $message['recaptcha_error'];
 
-		$recap_verify = curl_init();
-		curl_setopt($recap_verify, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
-		curl_setopt($recap_verify, CURLOPT_POST, true);
-		curl_setopt($recap_verify, CURLOPT_POSTFIELDS, http_build_query($recaptcha_data));
-		curl_setopt($recap_verify, CURLOPT_SSL_VERIFYPEER, false);
-		curl_setopt($recap_verify, CURLOPT_RETURNTRANSFER, true);
-		$recap_response = curl_exec($recap_verify);
-		$g_response = json_decode($recap_response);
+		if (isset($_POST['g-recaptcha-response'])) {
+			$recaptcha_data = array(
+				'secret' => $recaptcha_secret,
+				'response' => $_POST['g-recaptcha-response']
+			);
 
-		if ($g_response->success !== true) {
-			echo json_encode(array('response' => 'error', 'Message' => '<div class="alert alert-danger alert-dismissible fade show text-start"><i class="fa fa-times-circle"></i> ' . $message['recaptcha_invalid'] . '<button type="button" class="btn-close text-1 mt-1" data-bs-dismiss="alert"></button></div>'));
-			exit;
+			$recap_verify = curl_init();
+			curl_setopt($recap_verify, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+			curl_setopt($recap_verify, CURLOPT_POST, true);
+			curl_setopt($recap_verify, CURLOPT_POSTFIELDS, http_build_query($recaptcha_data));
+			curl_setopt($recap_verify, CURLOPT_SSL_VERIFYPEER, false);
+			curl_setopt($recap_verify, CURLOPT_RETURNTRANSFER, true);
+			$recap_response = curl_exec($recap_verify);
+			$g_response = json_decode($recap_response);
+
+			if ($g_response->success !== true) {
+				echo json_encode(array('response' => 'error', 'Message' => '<div class="alert alert-danger alert-dismissible fade show text-start"><i class="fa fa-times-circle"></i> ' . $message['recaptcha_invalid'] . '<button type="button" class="btn-close text-1 mt-1" data-bs-dismiss="alert"></button></div>'));
+				exit;
+			}
+			if (isset($g_response->score) && $g_response->score <= 0.5) {
+				echo json_encode(array('response' => 'error', 'Message' => '<div class="alert alert-danger alert-dismissible fade show text-start"><i class="fa fa-times-circle"></i> ' . $message['recaptcha_invalid'] . '<button type="button" class="btn-close text-1 mt-1" data-bs-dismiss="alert"></button></div>'));
+				exit;
+			}
 		}
-		if (isset($g_response->score) && $g_response->score <= 0.5) {
-			echo json_encode(array('response' => 'error', 'Message' => '<div class="alert alert-danger alert-dismissible fade show text-start"><i class="fa fa-times-circle"></i> ' . $message['recaptcha_invalid'] . '<button type="button" class="btn-close text-1 mt-1" data-bs-dismiss="alert"></button></div>'));
-			exit;
-		}
-	}
 
-	$forcerecap = (!empty($_POST['force_recaptcha']) && $_POST['force_recaptcha'] != 'false' ) ? true : false;
-	if (isset($g_response->action) && $g_response->action == 'contact') {
-		if (isset($g_response->success) && $g_response->success == true && $g_response->action == 'contact') {
-			
-		} else if ($forcerecap) {
-			if (!isset($_POST['g-recaptcha-response'])) {
+		$forcerecap = (!empty($_POST['force_recaptcha']) && $_POST['force_recaptcha'] != 'false') ? true : false;
+		if (isset($g_response->action) && $g_response->action == 'contact') {
+			if (isset($g_response->success) && $g_response->success == true && $g_response->action == 'contact') {
+			} else if ($forcerecap) {
+				if (!isset($_POST['g-recaptcha-response'])) {
+					echo json_encode(array('response' => 'error', 'Message' => '<div class="alert alert-danger alert-dismissible fade show text-start"><i class="fa fa-exclamation-triangle me-1"></i> ' . $message['recaptcha_error'] . '<button type="button" class="btn-close text-1 mt-1" data-bs-dismiss="alert"></button></div>'));
+					exit;
+				}
+			} else {
 				echo json_encode(array('response' => 'error', 'Message' => '<div class="alert alert-danger alert-dismissible fade show text-start"><i class="fa fa-exclamation-triangle me-1"></i> ' . $message['recaptcha_error'] . '<button type="button" class="btn-close text-1 mt-1" data-bs-dismiss="alert"></button></div>'));
 				exit;
 			}
-		} else {
-			echo json_encode(array('response' => 'error', 'Message' => '<div class="alert alert-danger alert-dismissible fade show text-start"><i class="fa fa-exclamation-triangle me-1"></i> ' . $message['recaptcha_error'] . '<button type="button" class="btn-close text-1 mt-1" data-bs-dismiss="alert"></button></div>'));
+		}
+		//----- reCaptcha End -----//
+
+		$success = "Thank you for contacting us and will be in touch with you very soon."; // Success Message
+
+		try {
+			$resp = $mail->send();
+			echo json_encode(array('response' => 'success', 'Message' => '<div class="alert alert-success alert-dismissible fade show text-start"><i class="fa fa-check-circle"></i> ' . $success . ' <button type="button" class="btn-close text-1 mt-1" data-bs-dismiss="alert"></button></div>'));
+			exit;
+		} catch (Exception $e) {
+			echo json_encode(array('response' => 'error', 'Message' => '<div class="alert alert-danger alert-dismissible fade show text-start"><i class="fa fa-exclamation-triangle me-1"></i> Message could not be sent: ' . $e->errorMessage() . '<button type="button" class="btn-close text-1 mt-1" data-bs-dismiss="alert"></button></div>'));
+			exit;
+		} catch (\Exception $e) {
+			echo json_encode(array('response' => 'error', 'Message' => '<div class="alert alert-danger alert-dismissible fade show text-start"><i class="fa fa-exclamation-triangle me-1"></i> Message could not be sent: ' . $e->getMessage() . '<button type="button" class="btn-close text-1 mt-1" data-bs-dismiss="alert"></button></div>'));
 			exit;
 		}
-	}
-	//----- reCaptcha End -----//
-
-	$success = "Thank you for contacting us and will be in touch with you very soon."; // Success Message
-
-	try {
-		$resp = $mail->send();
-		echo json_encode(array('response' => 'success', 'Message' => '<div class="alert alert-success alert-dismissible fade show text-start"><i class="fa fa-check-circle"></i> ' . $success . ' <button type="button" class="btn-close text-1 mt-1" data-bs-dismiss="alert"></button></div>'));
-		exit;
-	} catch (Exception $e) {
-		echo json_encode(array('response' => 'error', 'Message' => '<div class="alert alert-danger alert-dismissible fade show text-start"><i class="fa fa-exclamation-triangle me-1"></i> Message could not be sent: ' . $e->errorMessage() . '<button type="button" class="btn-close text-1 mt-1" data-bs-dismiss="alert"></button></div>'));
-		exit;
-	} catch (\Exception $e) {
-		echo json_encode(array('response' => 'error', 'Message' => '<div class="alert alert-danger alert-dismissible fade show text-start"><i class="fa fa-exclamation-triangle me-1"></i> Message could not be sent: ' . $e->getMessage() . '<button type="button" class="btn-close text-1 mt-1" data-bs-dismiss="alert"></button></div>'));
+	} else {
+		echo json_encode(array('response' => 'error', 'Message' => '<div class="alert alert-danger alert-dismissible fade show text-start"><i class="fa fa-exclamation-triangle me-1"></i> There is a invalid <strong>Receivers Email</strong> address! <button type="button" class="btn-close text-1 mt-1" data-bs-dismiss="alert"></button></div>'));
 		exit;
 	}
 } else {
-	echo json_encode(array('response' => 'error', 'Message' => '<div class="alert alert-danger alert-dismissible fade show text-start"><i class="fa fa-exclamation-triangle me-1"></i> There is a invalid <strong>Receivers Email</strong> address! <button type="button" class="btn-close text-1 mt-1" data-bs-dismiss="alert"></button></div>'));
+	echo json_encode(array('response' => 'error', 'Message' => '<div class="alert alert-danger alert-dismissible fade show text-start"><i class="fa fa-exclamation-triangle me-1"></i> There is a problem with the document! <button type="button" class="btn-close text-1 mt-1" data-bs-dismiss="alert"></button></div>'));
 	exit;
 }
-} else {
-    echo json_encode(array('response' => 'error', 'Message' => '<div class="alert alert-danger alert-dismissible fade show text-start"><i class="fa fa-exclamation-triangle me-1"></i> There is a problem with the document! <button type="button" class="btn-close text-1 mt-1" data-bs-dismiss="alert"></button></div>'));
-    exit;
-}
-?>
